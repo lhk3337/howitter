@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-
+import "firebase/auth";
 interface IFireBaseConfig {
   apiKey: string | undefined;
   authDomain: string | undefined;
@@ -16,4 +16,5 @@ const firebaseConfig: IFireBaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
 };
-export default firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+export const authService: firebase.auth.Auth = firebase.auth();
