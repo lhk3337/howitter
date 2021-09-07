@@ -2,8 +2,9 @@ import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Auth from "Routes/Auth";
 import Home from "Routes/Home";
+import firebase from "firebase/app";
 interface Iprops {
-  isLoggedIn: null;
+  isLoggedIn: firebase.User | null;
 }
 const AppRouter = ({ isLoggedIn }: Iprops) => {
   return (

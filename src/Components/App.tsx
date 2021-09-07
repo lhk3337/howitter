@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import AppRouter from "Components/Router";
 import { authService } from "firebaseAPI";
-
+import firebase from "firebase/app";
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<any>(authService.currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState<firebase.User | null>(authService.currentUser);
   const time: number = new Date().getFullYear();
 
   return (
