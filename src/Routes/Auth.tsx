@@ -5,6 +5,7 @@ const Auth = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [newAccount, setNewAccount] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
@@ -23,11 +24,11 @@ const Auth = () => {
       } else {
         await authService.signInWithEmailAndPassword(email, password);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      setError(error.message);
     }
   };
-
+  const toggleAcount = () => setNewAccount((prev) => !prev);
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -41,8 +42,10 @@ const Auth = () => {
           onChange={onChange}
           autoComplete="on"
         />
-        <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
+        <input type="submit" value={newAccount ? "Create Account" : "Sign In"} />
+        {error}
       </form>
+      <span onClick={toggleAcount}>{newAccount ? "Sign In" : "Create Account"}</span>
       <div>
         <button>Continue with Google</button>
         <button>Continue with Github</button>

@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppRouter from "Components/Router";
 import { authService } from "firebaseAPI";
 import firebase from "firebase/app";
+
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<firebase.User | null>(authService.currentUser);
+  const [init, setInit] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const time: number = new Date().getFullYear();
 
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+      setInit(true);
+    });
+  }, []);
   return (
     <>
-      <AppRouter isLoggedIn={isLoggedIn} />
+      {!init ? "loading...." : <AppRouter isLoggedIn={isLoggedIn} />}
       <footer>&copy; {time} Ho-witter</footer>
     </>
   );
