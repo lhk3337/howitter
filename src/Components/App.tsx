@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AppRouter from "Components/Router";
 import { authService } from "firebaseAPI";
-import firebase from "firebase/app";
 
 function App() {
   const [init, setInit] = useState<boolean>(false);
