@@ -7,7 +7,7 @@ const Auth = () => {
   const [newAccount, setNewAccount] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const {
       target: { name, value },
     } = event;
@@ -18,7 +18,7 @@ const Auth = () => {
     }
   };
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     try {
       if (newAccount) {
@@ -33,7 +33,7 @@ const Auth = () => {
 
   const toggleAcount = () => setNewAccount((prev: boolean) => !prev);
 
-  const onSocialClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSocialClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<void> => {
     const {
       currentTarget: { name },
     } = event;
