@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 interface IFireBaseConfig {
   apiKey: string | undefined;
   authDomain: string | undefined;
