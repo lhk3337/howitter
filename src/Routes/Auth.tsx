@@ -1,13 +1,13 @@
 import { authService, firebaseAuth } from "firebaseAPI";
 import React, { useState } from "react";
-
+import { TFormEvent, TChangeEvent, TClickEvent } from "types/type";
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [newAccount, setNewAccount] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const onChange = (event: TChangeEvent): void => {
     const {
       target: { name, value },
     } = event;
@@ -18,7 +18,7 @@ const Auth = () => {
     }
   };
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const onSubmit = async (event: TFormEvent): Promise<void> => {
     event.preventDefault();
     try {
       if (newAccount) {
@@ -33,7 +33,7 @@ const Auth = () => {
 
   const toggleAcount = () => setNewAccount((prev: boolean) => !prev);
 
-  const onSocialClick = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): Promise<void> => {
+  const onSocialClick = async (event: TClickEvent): Promise<void> => {
     const {
       currentTarget: { name },
     } = event;

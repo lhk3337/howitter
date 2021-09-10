@@ -4,9 +4,8 @@ import Auth from "Routes/Auth";
 import Home from "Routes/Home";
 import Navigation from "Components/Navigation";
 import Profile from "Routes/Profile";
-interface Iprops {
-  isLoggedIn: boolean;
-}
+import { Iprops } from "types/type";
+
 const AppRouter = ({ isLoggedIn }: Iprops) => {
   return (
     <Router>

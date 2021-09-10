@@ -1,14 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/database";
-interface IFireBaseConfig {
-  apiKey: string | undefined;
-  authDomain: string | undefined;
-  projectId: string | undefined;
-  storageBucket: string | undefined;
-  messagingSenderId: string | undefined;
-  appId: string | undefined;
-}
+import "firebase/firestore";
+import { IFireBaseConfig } from "types/type";
+
 const firebaseConfig: IFireBaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -21,3 +15,4 @@ const firebaseConfig: IFireBaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const authService = firebase.auth();
 export const firebaseAuth = firebase.auth;
+export const dbService = firebase.firestore();
