@@ -1,11 +1,12 @@
 import { authService, firebaseAuth } from "firebaseAPI";
 import React, { useState } from "react";
 import { TFormEvent, TChangeEvent, TClickEvent } from "types/type";
+
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [newAccount, setNewAccount] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>();
 
   const onChange = (event: TChangeEvent): void => {
     const {
@@ -26,8 +27,8 @@ const Auth = () => {
       } else {
         await authService.signInWithEmailAndPassword(email, password);
       }
-    } catch (error: any) {
-      setError(error.message);
+    } catch (e) {
+      setError((e as Error).message);
     }
   };
 
