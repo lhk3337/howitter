@@ -13,6 +13,12 @@ export interface Iprops {
   isLoggedIn: boolean;
 }
 
+export interface IhowitterMessage {
+  message: string;
+  createAt: number;
+  id: string;
+}
+
 export type TFormEvent = React.FormEvent<HTMLFormElement>;
 export type TChangeEvent = React.ChangeEvent<HTMLInputElement>;
 export type TClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
