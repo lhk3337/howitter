@@ -10,13 +10,21 @@ export interface IFireBaseConfig {
 }
 
 export interface Iprops {
-  isLoggedIn: boolean;
+  isLoggedIn?: boolean;
+  userObj: any;
 }
 
 export interface IhowitterMessage {
   message: string;
   createAt: number;
   id: string;
+}
+
+export interface hoWitterInfo {
+  id: string;
+  createAt: number;
+  creatorId: string;
+  message: string;
 }
 
 export type TFormEvent = React.FormEvent<HTMLFormElement>;

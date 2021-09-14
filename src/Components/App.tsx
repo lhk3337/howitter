@@ -5,21 +5,24 @@ import { authService } from "firebaseAPI";
 function App() {
   const [init, setInit] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userObj, setUserObj] = useState<null>(null);
   const time: number = new Date().getFullYear();
 
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
+    authService.onAuthStateChanged((user: any) => {
       if (user) {
         setIsLoggedIn(true);
+        setUserObj(user);
       } else {
         setIsLoggedIn(false);
       }
       setInit(true);
     });
   }, []);
+
   return (
     <>
-      {!init ? "loading...." : <AppRouter isLoggedIn={isLoggedIn} />}
+      {!init ? "loading...." : <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />}
       <footer>&copy; {time} Ho-witter</footer>
     </>
   );

@@ -1,29 +1,33 @@
 import { dbService } from "firebaseAPI";
 import React, { useEffect, useState } from "react";
-import { TFormEvent, TChangeEvent, IhowitterMessage } from "types/type";
+import { TFormEvent, TChangeEvent, IhowitterMessage, hoWitterInfo } from "types/type";
+import { Iprops } from "types/type";
 
-const Home = () => {
+const Home = ({ userObj }: Iprops) => {
   const [howitter, setHowitter] = useState<string>("");
   const [howitters, setHowitters] = useState<IhowitterMessage[]>([]);
 
-  const getHowitters = async () => {
-    const dbHowitter = await dbService.collection("howitter").get();
-    dbHowitter.forEach((document) => {
-      const howitterObject = {
-        ...document.data(),
-        id: document.id,
-      };
-      setHowitters((prev: any) => [howitterObject, ...prev]);
-    });
-  };
   useEffect(() => {
-    getHowitters();
+    dbService
+      .collection("howitter")
+      .orderBy("createAt", "desc")
+      .onSnapshot((snapshot) => {
+        const howitterArray = snapshot.docs.map(
+          (doc) =>
+            ({
+              id: doc.id,
+              ...doc.data(),
+            } as hoWitterInfo)
+        );
+        setHowitters(howitterArray);
+      });
   }, []);
   const onSubmit = async (event: TFormEvent) => {
     event.preventDefault();
     await dbService.collection("howitter").add({
       message: howitter,
       createAt: Date.now(),
+      creatorId: userObj.uid,
     });
     setHowitter("");
   };

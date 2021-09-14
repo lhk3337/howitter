@@ -6,14 +6,14 @@ import Navigation from "Components/Navigation";
 import Profile from "Routes/Profile";
 import { Iprops } from "types/type";
 
-const AppRouter = ({ isLoggedIn }: Iprops) => {
+const AppRouter = ({ isLoggedIn, userObj }: Iprops) => {
   return (
     <Router>
       {isLoggedIn && <Navigation />}
       <Switch>
         {isLoggedIn ? (
           <>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" render={() => <Home userObj={userObj} />} />
             <Route exact path="/profile" component={Profile} />
           </>
         ) : (
