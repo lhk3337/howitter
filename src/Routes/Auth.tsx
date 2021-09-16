@@ -1,6 +1,6 @@
 import { authService, firebaseAuth } from "firebaseAPI";
 import React, { useState } from "react";
-import { TFormEvent, TChangeEvent, TClickEvent } from "types/type";
+import { TFormEvent, TChangeEvent, TClickEvent } from "types";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");

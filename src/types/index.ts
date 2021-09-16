@@ -14,17 +14,16 @@ export interface Iprops {
   userObj: any;
 }
 
-export interface IhowitterMessage {
+export interface hoWitterInfoType {
   message: string;
   createAt: number;
   id: string;
+  creatorId: string;
 }
 
-export interface hoWitterInfo {
-  id: string;
-  createAt: number;
-  creatorId: string;
-  message: string;
+export interface howitterObjsType {
+  key: string;
+  howitterObj: hoWitterInfoType;
 }
 
 export type TFormEvent = React.FormEvent<HTMLFormElement>;

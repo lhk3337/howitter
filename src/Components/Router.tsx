@@ -4,7 +4,7 @@ import Auth from "Routes/Auth";
 import Home from "Routes/Home";
 import Navigation from "Components/Navigation";
 import Profile from "Routes/Profile";
-import { Iprops } from "types/type";
+import { Iprops } from "types";
 
 const AppRouter = ({ isLoggedIn, userObj }: Iprops) => {
   return (
