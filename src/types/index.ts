@@ -24,6 +24,7 @@ export interface hoWitterInfoType {
 export interface howitterObjsType {
   key: string;
   howitterObj: hoWitterInfoType;
+  isOwner: boolean;
 }
 
 export type TFormEvent = React.FormEvent<HTMLFormElement>;

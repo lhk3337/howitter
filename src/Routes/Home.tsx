@@ -1,11 +1,10 @@
 import { dbService } from "firebaseAPI";
 import React, { useEffect, useState } from "react";
-import { TFormEvent, TChangeEvent, IhowitterMessage, hoWitterInfo } from "types/type";
-import { Iprops } from "types/type";
-
+import { TFormEvent, TChangeEvent, hoWitterInfoType, Iprops } from "types";
+import Howitter from "Components/Howitter";
 const Home = ({ userObj }: Iprops) => {
   const [howitter, setHowitter] = useState<string>("");
-  const [howitters, setHowitters] = useState<IhowitterMessage[]>([]);
+  const [howitters, setHowitters] = useState<hoWitterInfoType[]>([]);
 
   useEffect(() => {
     dbService
@@ -17,7 +16,7 @@ const Home = ({ userObj }: Iprops) => {
             ({
               id: doc.id,
               ...doc.data(),
-            } as hoWitterInfo)
+            } as hoWitterInfoType)
         );
         setHowitters(howitterArray);
       });
@@ -39,6 +38,7 @@ const Home = ({ userObj }: Iprops) => {
 
     setHowitter(value);
   };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -46,10 +46,10 @@ const Home = ({ userObj }: Iprops) => {
         <input type="submit" value="HoWitter" />
       </form>
       <div>
-        {howitters.map((howitter: IhowitterMessage) => (
-          <div key={howitter.id}>
-            <h4>{howitter.message}</h4>
-          </div>
+        {howitters.map((howitter: hoWitterInfoType) => (
+          <>
+            <Howitter key={howitter.id} howitterObj={howitter} isOwner={howitter.creatorId === userObj.uid} />
+          </>
         ))}
       </div>
     </div>
