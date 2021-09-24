@@ -30,3 +30,7 @@ export interface howitterObjsType {
 export type TFormEvent = React.FormEvent<HTMLFormElement>;
 export type TChangeEvent = React.ChangeEvent<HTMLInputElement>;
 export type TClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
+
+export interface FileReaderEvent extends ProgressEvent {
+  currentTarget: any;
+}

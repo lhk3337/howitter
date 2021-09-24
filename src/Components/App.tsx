@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       {!init ? "loading...." : <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />}
-      <footer>&copy; {time} Ho-witter</footer>
+      {/* <footer>&copy; {time} Ho-witter</footer> */}
     </>
   );
 }
