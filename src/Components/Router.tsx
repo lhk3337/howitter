@@ -14,7 +14,7 @@ const AppRouter = ({ isLoggedIn, userObj }: Iprops) => {
         {isLoggedIn ? (
           <>
             <Route exact path="/" render={() => <Home userObj={userObj} />} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile" render={() => <Profile userObj={userObj} />} />
           </>
         ) : (
           <Route exact path="/" component={Auth} /> //로그인 화면
