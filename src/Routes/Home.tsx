@@ -6,7 +6,7 @@ import Howitter from "Components/Howitter";
 const Home = ({ userObj }: Iprops) => {
   const [howitter, setHowitter] = useState<string>("");
   const [howitters, setHowitters] = useState<hoWitterInfoType[]>([]);
-  const [attachment, setAttachment] = useState<string | null>();
+  const [attachment, setAttachment] = useState<null | string>("");
 
   useEffect(() => {
     dbService
@@ -23,12 +23,22 @@ const Home = ({ userObj }: Iprops) => {
         setHowitters(howitterArray);
       });
   }, []);
+
   const onSubmit = async (event: TFormEvent) => {
     event.preventDefault();
+
+    let attachmentUrl = "";
+    if (attachment !== "") {
+      const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
+      const response = await attachmentRef.putString(attachment!, "data_url");
+      attachmentUrl = await response.ref.getDownloadURL();
+    }
+
     await dbService.collection("howitter").add({
       message: howitter,
       createAt: Date.now(),
       creatorId: userObj.uid,
+      attachmentUrl,
     });
     setHowitter("");
   };
@@ -40,6 +50,7 @@ const Home = ({ userObj }: Iprops) => {
 
     setHowitter(value);
   };
+
   const onFileChange = (event: TChangeEvent) => {
     const {
       target: { files },
@@ -59,7 +70,7 @@ const Home = ({ userObj }: Iprops) => {
     // 파일 관련 객체(reader)
   };
 
-  const onClearImage = () => setAttachment(null);
+  const onClearImage = () => setAttachment("");
 
   return (
     <div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { dbService } from "firebaseAPI";
+import { dbService, storageService } from "firebaseAPI";
 import { howitterObjsType, TChangeEvent, TFormEvent } from "types";
 
 const Howitter = ({ howitterObj, isOwner }: howitterObjsType) => {
@@ -10,7 +10,10 @@ const Howitter = ({ howitterObj, isOwner }: howitterObjsType) => {
   const onDeleteClick = async () => {
     const ok = window.confirm("메시지를 삭제 하시겠습니까?");
     if (ok) {
-      await dbService.doc(`howitter/${howitterObj.id}`).delete();
+      await dbService.doc(`howitter/${howitterObj.id}`).delete(); //메시지 삭제
+      if (howitterObj.attachmentUrl) {
+        await storageService.refFromURL(howitterObj.attachmentUrl).delete(); //파일 삭제
+      }
     }
   };
 
@@ -43,6 +46,8 @@ const Howitter = ({ howitterObj, isOwner }: howitterObjsType) => {
       ) : (
         <>
           <h4>{howitterObj.message}</h4>
+          {howitterObj.attachmentUrl && <img src={howitterObj.attachmentUrl} width="50px" height="50px" />}
+          {}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>삭제 하기</button>

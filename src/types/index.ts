@@ -19,6 +19,7 @@ export interface hoWitterInfoType {
   createAt: number;
   id: string;
   creatorId: string;
+  attachmentUrl: string;
 }
 
 export interface howitterObjsType {
