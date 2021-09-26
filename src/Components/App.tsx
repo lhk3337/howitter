@@ -19,6 +19,10 @@ function App() {
       setInit(true);
     });
   }, []);
+  let currentUser: any = authService.currentUser;
+  const refreshUser = () => {
+    setUserObj(currentUser);
+  };
 
   return (
     <>

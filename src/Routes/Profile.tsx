@@ -1,21 +1,32 @@
-import { dbService } from "firebaseAPI";
-import React, { useEffect } from "react";
-import { Iprops } from "types";
+import React, { useState } from "react";
+import { Iprops, TFormEvent, TChangeEvent } from "types";
 
 const Profile = ({ userObj }: Iprops) => {
-  const getMyHowitters = async () => {
-    const howitters = await dbService
-      .collection("howitter")
-      .where("creatorId", "==", userObj.uid) // filtering
-      .orderBy("createAt")
-      .get();
-    console.log(howitters.docs.map((doc) => doc.data()));
-  };
-  useEffect(() => {
-    getMyHowitters();
-  }, []);
+  const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 
-  return <div>Profile</div>;
+  const onChange = (event: TChangeEvent) => {
+    const {
+      target: { value },
+    } = event;
+    setNewDisplayName(value);
+  };
+
+  const onSubmit = async (event: TFormEvent) => {
+    event.preventDefault();
+    if (userObj.displayName !== newDisplayName) {
+      await userObj.updateProfile({
+        displayName: newDisplayName,
+      });
+    }
+  };
+  return (
+    <>
+      <form onSubmit={onSubmit}>
+        <input onChange={onChange} type="text" placeholder="Display name" value={newDisplayName} />
+        <input type="submit" placeholder="Update profile" />
+      </form>
+    </>
+  );
 };
 
 export default Profile;

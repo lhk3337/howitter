@@ -9,7 +9,7 @@ import { Iprops } from "types";
 const AppRouter = ({ isLoggedIn, userObj }: Iprops) => {
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObj={userObj} />}
       <Switch>
         {isLoggedIn ? (
           <>

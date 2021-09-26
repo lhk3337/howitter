@@ -1,8 +1,8 @@
 import { authService } from "firebaseAPI";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-
-const Navigation = () => {
+import { Iprops } from "types";
+const Navigation = ({ userObj }: Iprops) => {
   let history = useHistory();
   const onLogOutClick = (): void => {
     authService.signOut();
@@ -15,7 +15,7 @@ const Navigation = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile">{userObj.displayName} Profile</Link>
         </li>
         <li>
           <button onClick={onLogOutClick}>Log out</button>
