@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Iprops, TFormEvent, TChangeEvent } from "types";
 
-const Profile = ({ userObj }: Iprops) => {
+const Profile = ({ userObj, refreshUser }: Iprops) => {
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 
   const onChange = (event: TChangeEvent) => {
@@ -17,6 +17,7 @@ const Profile = ({ userObj }: Iprops) => {
       await userObj.updateProfile({
         displayName: newDisplayName,
       });
+      refreshUser();
     }
   };
   return (

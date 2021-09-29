@@ -4,30 +4,33 @@ import { authService } from "firebaseAPI";
 
 function App() {
   const [init, setInit] = useState<boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [userObj, setUserObj] = useState<null>(null);
-  const time: number = new Date().getFullYear();
+  const [userObj, setUserObj] = useState<null | Object>(null);
 
   useEffect(() => {
     authService.onAuthStateChanged((user: any) => {
       if (user) {
-        setIsLoggedIn(true);
-        setUserObj(user);
-      } else {
-        setIsLoggedIn(false);
+        setUserObj({
+          displayName: user.displayName,
+          uid: user.uid,
+          updateProfile: (args: any) => user.updateProfile(args),
+        });
       }
       setInit(true);
     });
   }, []);
-  let currentUser: any = authService.currentUser;
+
   const refreshUser = () => {
-    setUserObj(currentUser);
+    const user = authService.currentUser as any;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args: any) => user.updateProfile(args),
+    });
   };
 
   return (
     <>
-      {!init ? "loading...." : <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />}
-      {/* <footer>&copy; {time} Ho-witter</footer> */}
+      {!init ? "loading...." : <AppRouter refreshUser={refreshUser} isLoggedIn={Boolean(userObj)} userObj={userObj} />}
     </>
   );
 }

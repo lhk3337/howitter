@@ -6,7 +6,7 @@ import Navigation from "Components/Navigation";
 import Profile from "Routes/Profile";
 import { Iprops } from "types";
 
-const AppRouter = ({ isLoggedIn, userObj }: Iprops) => {
+const AppRouter = ({ refreshUser, isLoggedIn, userObj }: Iprops) => {
   return (
     <Router>
       {isLoggedIn && <Navigation userObj={userObj} />}
@@ -14,7 +14,7 @@ const AppRouter = ({ isLoggedIn, userObj }: Iprops) => {
         {isLoggedIn ? (
           <>
             <Route exact path="/" render={() => <Home userObj={userObj} />} />
-            <Route exact path="/profile" render={() => <Profile userObj={userObj} />} />
+            <Route exact path="/profile" render={() => <Profile userObj={userObj} refreshUser={refreshUser} />} />
           </>
         ) : (
           <Route exact path="/" component={Auth} /> //로그인 화면

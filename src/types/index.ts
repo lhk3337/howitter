@@ -10,8 +10,7 @@ export interface IFireBaseConfig {
 }
 
 export interface Iprops {
-  isLoggedIn?: boolean;
-  userObj: any;
+  [key: string]: any;
 }
 
 export interface hoWitterInfoType {
