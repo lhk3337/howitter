@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AppRouter from "Components/Router";
 import { authService } from "firebaseAPI";
+import GlobalStyle from "styles/global-styles";
+import { ThemeProvider } from "styled-components";
+import theme from "styles/theme";
 
 function App() {
   const [init, setInit] = useState<boolean>(false);
@@ -32,7 +35,14 @@ function App() {
 
   return (
     <>
-      {!init ? "loading...." : <AppRouter refreshUser={refreshUser} isLoggedIn={Boolean(userObj)} userObj={userObj} />}
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        {!init ? (
+          "loading...."
+        ) : (
+          <AppRouter refreshUser={refreshUser} isLoggedIn={Boolean(userObj)} userObj={userObj} />
+        )}
+      </ThemeProvider>
     </>
   );
 }
