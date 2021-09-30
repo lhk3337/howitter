@@ -2,4 +2,14 @@
 
 ## Language
 
-<img alt="Typescript" src ="https://img.shields.io/badge/Typescript-3178C6.svg?&style=for-the-badge&logo=Typescript&logoColor=white"/> <img alt="react" src ="https://img.shields.io/badge/react-61DAFB.svg?&style=for-the-badge&logo=react&logoColor=black"/> <img alt="firebase" src ="https://img.shields.io/badge/firebase-FFCA28.svg?&style=for-the-badge&logo=firebase&logoColor=black"/>
+<p>
+<img alt="Typescript" src ="https://img.shields.io/badge/Typescript-3178C6.svg?&style=flat-square&logo=Typescript&logoColor=white"/> 
+<img alt="firebase" src ="https://img.shields.io/badge/Firebase-FFCA28.svg?&style=flat-square&logo=firebase&logoColor=black"/>
+</p>
+
+
+<p>
+<img src="https://img.shields.io/badge/React-61dafb.svg?&style=flat-square&logo=react&logoColor=black" />
+ <img src="https://img.shields.io/badge/Styled components-DB7093.svg?&style=flat-square&logo=styled-components&logoColor=white" />
+<img src="https://img.shields.io/badge/React Router-ca4245.svg?&style=flat-square&logo=React-Router&logoColor=white" />
+ </p>
