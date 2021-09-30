@@ -24,7 +24,7 @@ const Profile = ({ userObj, refreshUser }: Iprops) => {
     <>
       <form onSubmit={onSubmit}>
         <input onChange={onChange} type="text" placeholder="Display name" value={newDisplayName} />
-        <input type="submit" placeholder="Update profile" />
+        <input type="submit" value="사용자 업데이트 " placeholder="Update profile" />
       </form>
     </>
   );
