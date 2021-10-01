@@ -1,7 +1,12 @@
-import { authService } from "firebaseAPI";
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { authService } from "firebaseAPI";
+import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Iprops } from "types";
+import * as Nav from "styles/Components/NavigationStyle";
+
 const Navigation = ({ userObj }: Iprops) => {
   let history = useHistory();
   const onLogOutClick = (): void => {
@@ -10,17 +15,22 @@ const Navigation = ({ userObj }: Iprops) => {
   };
   return (
     <nav>
-      <ul>
+      <Nav.MenuList>
         <li>
-          <Link to="/">Home</Link>
+          <Nav.LinkHome to="/">
+            <FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="2x" />
+          </Nav.LinkHome>
         </li>
         <li>
-          <Link to="/profile">{userObj.displayName} Profile</Link>
+          <Nav.LinkProfile to="/profile">
+            <FontAwesomeIcon icon={faUser} color={"#04AAFF"} size="2x" />
+            <Nav.UserName>{userObj.displayName ? `${userObj.displayName}` : "Profile"}</Nav.UserName>
+          </Nav.LinkProfile>
         </li>
         <li>
           <button onClick={onLogOutClick}>Log out</button>
         </li>
-      </ul>
+      </Nav.MenuList>
     </nav>
   );
 };
