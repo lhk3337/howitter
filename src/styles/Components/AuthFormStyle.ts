@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { container } from "styles/Common/CommonStyle";
+import { CommonContainer } from "styles/Common/CommonStyle";
 import { AuthFormSubmitStyleProps } from "types";
 import theme from "styles/theme";
 
@@ -15,7 +15,7 @@ const commonInput = css`
 `;
 
 export const Form = styled.form`
-  ${container}
+  ${CommonContainer}
 `;
 
 export const Input = styled.input`
