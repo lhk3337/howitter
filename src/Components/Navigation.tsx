@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Iprops } from "types";
-import * as Nav from "styles/Components/NavigationStyle";
+import * as NavStyle from "styles/Components/NavigationStyle";
 
 const Navigation = ({ userObj }: Iprops) => {
   let history = useHistory();
@@ -15,22 +15,22 @@ const Navigation = ({ userObj }: Iprops) => {
   };
   return (
     <nav>
-      <Nav.MenuList>
+      <NavStyle.MenuList>
         <li>
-          <Nav.LinkHome to="/">
+          <NavStyle.LinkHome to="/">
             <FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="2x" />
-          </Nav.LinkHome>
+          </NavStyle.LinkHome>
         </li>
         <li>
-          <Nav.LinkProfile to="/profile">
+          <NavStyle.LinkProfile to="/profile">
             <FontAwesomeIcon icon={faUser} color={"#04AAFF"} size="2x" />
-            <Nav.UserName>{userObj.displayName ? `${userObj.displayName}` : "Profile"}</Nav.UserName>
-          </Nav.LinkProfile>
+            <NavStyle.UserName>{userObj.displayName ? `${userObj.displayName}` : "Profile"}</NavStyle.UserName>
+          </NavStyle.LinkProfile>
         </li>
         <li>
           <button onClick={onLogOutClick}>Log out</button>
         </li>
-      </Nav.MenuList>
+      </NavStyle.MenuList>
     </nav>
   );
 };

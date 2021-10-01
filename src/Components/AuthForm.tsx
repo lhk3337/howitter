@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { authService } from "firebaseAPI";
 import { TFormEvent, TChangeEvent } from "types";
-import * as Auth from "styles/Routes/AuthStyle";
+import * as AuthFormStyle from "styles/Routes/AuthStyle";
 
 const AuthForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -37,9 +37,9 @@ const AuthForm = () => {
 
   return (
     <>
-      <Auth.Container onSubmit={onSubmit}>
-        <Auth.Input name="email" type="text" placeholder="Email" required value={email} onChange={onChange} />
-        <Auth.Input
+      <AuthFormStyle.Container onSubmit={onSubmit}>
+        <AuthFormStyle.Input name="email" type="text" placeholder="Email" required value={email} onChange={onChange} />
+        <AuthFormStyle.Input
           name="password"
           type="password"
           placeholder="Password"
@@ -48,14 +48,14 @@ const AuthForm = () => {
           onChange={onChange}
           autoComplete="on"
         />
-        <Auth.Submit
+        <AuthFormStyle.Submit
           StateBackgroundColor={newAccount}
           type="submit"
           value={newAccount ? "Create Account" : "Sign In"}
         />
-        {error && <Auth.Error>{error}</Auth.Error>}
-      </Auth.Container>
-      <Auth.Switch onClick={toggleAcount}>{newAccount ? "Sign In" : "Create Account"}</Auth.Switch>
+        {error && <AuthFormStyle.Error>{error}</AuthFormStyle.Error>}
+      </AuthFormStyle.Container>
+      <AuthFormStyle.Switch onClick={toggleAcount}>{newAccount ? "Sign In" : "Create Account"}</AuthFormStyle.Switch>
     </>
   );
 };
