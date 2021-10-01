@@ -34,3 +34,7 @@ export type TClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 export interface FileReaderEvent extends ProgressEvent {
   currentTarget: any;
 }
+
+export interface AuthFormSubmitStyleProps {
+  StateBackgroundColor?: boolean;
+}

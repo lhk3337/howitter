@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { authService } from "firebaseAPI";
 import { TFormEvent, TChangeEvent } from "types";
-import * as AuthFormStyle from "styles/Routes/AuthStyle";
+import * as AuthFormStyle from "styles/Components/AuthFormStyle";
 
 const AuthForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -37,7 +37,7 @@ const AuthForm = () => {
 
   return (
     <>
-      <AuthFormStyle.Container onSubmit={onSubmit}>
+      <AuthFormStyle.Form onSubmit={onSubmit}>
         <AuthFormStyle.Input name="email" type="text" placeholder="Email" required value={email} onChange={onChange} />
         <AuthFormStyle.Input
           name="password"
@@ -54,7 +54,7 @@ const AuthForm = () => {
           value={newAccount ? "Create Account" : "Sign In"}
         />
         {error && <AuthFormStyle.Error>{error}</AuthFormStyle.Error>}
-      </AuthFormStyle.Container>
+      </AuthFormStyle.Form>
       <AuthFormStyle.Switch onClick={toggleAcount}>{newAccount ? "Sign In" : "Create Account"}</AuthFormStyle.Switch>
     </>
   );
