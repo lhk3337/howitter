@@ -1,9 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { CommonContainer } from "styles/Common/CommonStyle";
 import { AuthFormSubmitStyleProps } from "types";
 import theme from "styles/theme";
 
-const commonInput = css`
+export const Form = styled.form`
+  ${CommonContainer}
+`;
+
+export const Input = styled.input`
   max-width: 320px;
   width: 100%;
   padding: 10px;
@@ -14,16 +18,7 @@ const commonInput = css`
   color: black;
 `;
 
-export const Form = styled.form`
-  ${CommonContainer}
-`;
-
-export const Input = styled.input`
-  ${commonInput}
-`;
-
-export const Submit = styled.input<AuthFormSubmitStyleProps>`
-  ${commonInput}
+export const Submit = styled(Input)<AuthFormSubmitStyleProps>`
   text-align: center;
   background: ${(props) => (props.StateBackgroundColor ? `${theme.color.green}` : `${theme.color.skyblue}`)};
   color: white;
