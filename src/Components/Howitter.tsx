@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { dbService, storageService } from "firebaseAPI";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { howitterObjsType, TChangeEvent, TFormEvent } from "types";
+import * as Style from "styles/Components/HowitterStyle";
 
 const Howitter = ({ howitterObj, isOwner }: howitterObjsType) => {
   //isOwner는 작성자 인지 판별
@@ -34,29 +37,38 @@ const Howitter = ({ howitterObj, isOwner }: howitterObjsType) => {
     setNewHowitter(value);
   };
   return (
-    <div>
+    <Style.Container>
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
-            <input type="text" value={newHowitter} onChange={onChange} placeholder="Edit your howitter" required />
-            <input type="submit" value="업데이트 하기" />
-          </form>
-          <button onClick={togleEditing}>취 소</button>
+          <Style.FormSubmit onSubmit={onSubmit}>
+            <Style.FormInput
+              type="text"
+              value={newHowitter}
+              onChange={onChange}
+              placeholder="Edit your howitter"
+              required
+            />
+            <Style.SubmitInput type="submit" value="업데이트 하기" />
+          </Style.FormSubmit>
+          <Style.CancelBtn onClick={togleEditing}>취 소</Style.CancelBtn>
         </>
       ) : (
         <>
-          <h4>{howitterObj.message}</h4>
-          {howitterObj.attachmentUrl && <img src={howitterObj.attachmentUrl} width="50px" height="50px" />}
-          {}
+          <Style.Message>{howitterObj.message}</Style.Message>
+          {howitterObj.attachmentUrl && <Style.ProfileImg src={howitterObj.attachmentUrl} />}
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>삭제 하기</button>
-              <button onClick={togleEditing}>수정 하기</button>
-            </>
+            <Style.HowitterAction>
+              <span onClick={onDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={togleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </Style.HowitterAction>
           )}
         </>
       )}
-    </div>
+    </Style.Container>
   );
 };
 
