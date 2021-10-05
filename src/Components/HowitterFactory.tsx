@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { dbService, storageService } from "firebaseAPI";
 import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Iprops, TFormEvent, TChangeEvent, FileReaderEvent } from "types";
-
+import * as Style from "styles/Components/HowitterFactoryStyle";
 const HowitterFactory = ({ userObj }: Iprops) => {
   const [howitter, setHowitter] = useState<string>("");
   const [attachment, setAttachment] = useState<null | string>("");
 
   const onSubmit = async (event: TFormEvent) => {
+    if (howitter === "") {
+      return;
+    }
     event.preventDefault();
 
     let attachmentUrl = "";
@@ -56,17 +61,32 @@ const HowitterFactory = ({ userObj }: Iprops) => {
   const onClearImage = () => setAttachment("");
 
   return (
-    <form onSubmit={onSubmit}>
-      <input type="text" value={howitter} onChange={onChange} placeholder="What's on your mind?" maxLength={120} />
-      <input type="file" accept="image/*" onChange={onFileChange} />
-      <input type="submit" value="HoWitter" />
+    <Style.FactoryForm onSubmit={onSubmit}>
+      <Style.FactoryContainer>
+        <Style.FactoryInput
+          type="text"
+          value={howitter}
+          onChange={onChange}
+          placeholder="What's on your mind?"
+          maxLength={120}
+        />
+        <Style.FactoryInputArrow type="submit" value="&rarr;" />
+      </Style.FactoryContainer>
+      <Style.FactoryLabel htmlFor="attach-file">
+        <span>Add photos</span>
+        <FontAwesomeIcon icon={faPlus} />
+      </Style.FactoryLabel>
+      <Style.FactoryInputFile id="attach-file" type="file" accept="image/*" onChange={onFileChange} />
       {attachment && (
-        <div>
-          <button onClick={onClearImage}>Clear</button>
-          <img src={attachment} width="50px" height="50px" />
-        </div>
+        <Style.FactoryAttachment>
+          <img src={attachment} />
+          <Style.FactoryClear onClick={onClearImage}>
+            <span>사진 삭제 하기</span>
+            <FontAwesomeIcon icon={faTimes} />
+          </Style.FactoryClear>
+        </Style.FactoryAttachment>
       )}
-    </form>
+    </Style.FactoryForm>
   );
 };
 
