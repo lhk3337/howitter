@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Iprops, TFormEvent, TChangeEvent } from "types";
+import * as Style from "styles/Routes/ProfileStyle";
 
 const Profile = ({ userObj, refreshUser }: Iprops) => {
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
@@ -21,12 +22,12 @@ const Profile = ({ userObj, refreshUser }: Iprops) => {
     }
   };
   return (
-    <>
+    <Style.Container>
       <form onSubmit={onSubmit}>
-        <input onChange={onChange} type="text" placeholder="Display name" value={newDisplayName} />
-        <input type="submit" value="사용자 업데이트 " placeholder="Update profile" />
+        <Style.Input onChange={onChange} type="text" autoFocus placeholder="Display name" value={newDisplayName} />
+        <Style.Submit type="submit" value="사용자 업데이트 " placeholder="Update profile" />
       </form>
-    </>
+    </Style.Container>
   );
 };
 
