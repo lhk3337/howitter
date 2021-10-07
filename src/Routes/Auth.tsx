@@ -1,7 +1,10 @@
 import React from "react";
-import AuthForm from "Components/AuthForm";
 import { authService, firebaseAuth } from "firebaseAPI";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter, faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import AuthForm from "Components/AuthForm";
 import { TClickEvent } from "types";
+import * as Style from "styles/Routes/AuthStyle";
 
 const Auth = () => {
   const onSocialClick = async (event: TClickEvent): Promise<void> => {
@@ -18,17 +21,18 @@ const Auth = () => {
   };
 
   return (
-    <>
+    <Style.Container>
+      <FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="3x" style={{ marginBottom: 30 }} />
       <AuthForm />
-      <>
-        <button onClick={onSocialClick} name="google">
-          Continue with Google
-        </button>
-        <button onClick={onSocialClick} name="github">
-          Continue with Github
-        </button>
-      </>
-    </>
+      <Style.Btns>
+        <Style.Btn onClick={onSocialClick} name="google">
+          Continue with Google <FontAwesomeIcon icon={faGoogle} />
+        </Style.Btn>
+        <Style.Btn onClick={onSocialClick} name="github">
+          Continue with Github <FontAwesomeIcon icon={faGithub} />
+        </Style.Btn>
+      </Style.Btns>
+    </Style.Container>
   );
 };
 
