@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "firebaseAPI";
-
-import { hoWitterInfoType, Iprops } from "types";
 import Howitter from "Components/Howitter";
 import HowitterFactory from "Components/HowitterFactory";
+import { hoWitterInfoType, Iprops } from "types";
+import * as Style from "styles/Routes/HomeStyle";
+
 const Home = ({ userObj }: Iprops) => {
   const [howitters, setHowitters] = useState<hoWitterInfoType[]>([]);
 
@@ -24,16 +25,14 @@ const Home = ({ userObj }: Iprops) => {
   }, []);
 
   return (
-    <div>
+    <Style.Container>
       <HowitterFactory userObj={userObj} />
-      <div>
+      <Style.Items>
         {howitters.map((howitter: hoWitterInfoType) => (
-          <>
-            <Howitter key={howitter.id} howitterObj={howitter} isOwner={howitter.creatorId === userObj.uid} />
-          </>
+          <Howitter key={howitter.id} howitterObj={howitter} isOwner={howitter.creatorId === userObj.uid} />
         ))}
-      </div>
-    </div>
+      </Style.Items>
+    </Style.Container>
   );
 };
 
