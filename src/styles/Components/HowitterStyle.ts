@@ -30,6 +30,7 @@ export const FormInput = styled.input`
 
 export const SubmitInput = styled.input`
   ${share}
+  ${CommonFormBtn}
   margin-bottom: 10px;
 `;
 
