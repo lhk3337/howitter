@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Iprops } from "types";
-import * as NavStyle from "styles/Components/NavigationStyle";
+import * as Style from "styles/Components/NavigationStyle";
 
 const Navigation = ({ userObj }: Iprops) => {
   let history = useHistory();
@@ -15,22 +15,22 @@ const Navigation = ({ userObj }: Iprops) => {
   };
   return (
     <nav>
-      <NavStyle.MenuList>
+      <Style.MenuList>
         <li>
-          <NavStyle.LinkHome to="/">
+          <Style.LinkHome to="/">
             <FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="2x" />
-          </NavStyle.LinkHome>
+          </Style.LinkHome>
         </li>
         <li>
-          <NavStyle.LinkProfile to="/profile">
+          <Style.LinkProfile to="/profile">
             <FontAwesomeIcon icon={faUser} color={"#04AAFF"} size="2x" />
-            <NavStyle.UserName>{userObj.displayName ? `${userObj.displayName}` : "Profile"}</NavStyle.UserName>
-          </NavStyle.LinkProfile>
+            <Style.UserName>{userObj.displayName ? `${userObj.displayName}` : "Profile"}</Style.UserName>
+          </Style.LinkProfile>
         </li>
         <li>
-          <button onClick={onLogOutClick}>Log out</button>
+          <Style.LogOutBtn onClick={onLogOutClick}>Log out</Style.LogOutBtn>
         </li>
-      </NavStyle.MenuList>
+      </Style.MenuList>
     </nav>
   );
 };

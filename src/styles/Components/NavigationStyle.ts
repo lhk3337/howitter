@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { CommonFormBtn, CommonCancelBtn } from "styles/Common/CommonStyle";
 export const MenuList = styled.ul`
   display: flex;
   justify-content: center;
@@ -19,4 +19,12 @@ export const LinkProfile = styled(Link)`
 
 export const UserName = styled.span`
   margin-top: 10px;
+`;
+
+export const LogOutBtn = styled.div`
+  ${CommonFormBtn}
+  ${CommonCancelBtn}
+  margin-left:30px;
+  padding: 10px;
+  margin-top: 5px;
 `;
