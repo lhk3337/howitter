@@ -4,6 +4,7 @@ export const CommonContainer = css`
   max-width: 320px;
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 `;
 
 export const CommonFormInput = css`
